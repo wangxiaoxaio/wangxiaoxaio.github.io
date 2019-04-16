@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | wangxiaoxaio</title>
+  <title>说说CORS与jsonp | wangxiaoxaio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wangxiaoxaio">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="前言 浏览器出于防止潜在安全风险的考虑，使用了同源策略，这一方面保证了我们数据的安全，另一方面却又限制了我们的手脚，基于此，开发者们与标准制定组织提供了不同的解决方案，这里主要说说CORS与jsonp。 什么是同源策略同源指的是两个域需要协议，子域名，主域名与端口号都保持一致，四者有一个不同，即属于跨域。注意:  http://localhost:8080与http://127.0.0.1:808">
+<meta property="og:type" content="article">
+<meta property="og:title" content="说说CORS与jsonp">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/说说CORS与jsonp/index.html">
 <meta property="og:site_name" content="wangxiaoxaio">
+<meta property="og:description" content="前言 浏览器出于防止潜在安全风险的考虑，使用了同源策略，这一方面保证了我们数据的安全，另一方面却又限制了我们的手脚，基于此，开发者们与标准制定组织提供了不同的解决方案，这里主要说说CORS与jsonp。 什么是同源策略同源指的是两个域需要协议，子域名，主域名与端口号都保持一致，四者有一个不同，即属于跨域。注意:  http://localhost:8080与http://127.0.0.1:808">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/16/16a26060fd316b15?w=453&h=205&f=png&s=3707">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/16/16a2606187c991d1?w=435&h=92&f=png&s=2245">
+<meta property="og:updated_time" content="2019-04-16T15:23:35.473Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wangxiaoxaio">
+<meta name="twitter:title" content="说说CORS与jsonp">
+<meta name="twitter:description" content="前言 浏览器出于防止潜在安全风险的考虑，使用了同源策略，这一方面保证了我们数据的安全，另一方面却又限制了我们的手脚，基于此，开发者们与标准制定组织提供了不同的解决方案，这里主要说说CORS与jsonp。 什么是同源策略同源指的是两个域需要协议，子域名，主域名与端口号都保持一致，四者有一个不同，即属于跨域。注意:  http://localhost:8080与http://127.0.0.1:808">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/4/16/16a26060fd316b15?w=453&h=205&f=png&s=3707">
   
     <link rel="alternative" href="/atom.xml" title="wangxiaoxaio" type="application/atom+xml">
   
@@ -150,103 +157,229 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-说说CORS与jsonp" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      说说CORS与jsonp
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/16/说说CORS与jsonp/" class="archive-article-date">
+
+        
+        <a href="/2019/04/16/说说CORS与jsonp/" class="archive-article-date">
   	<time datetime="2019-04-16T15:22:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/16/说说CORS与jsonp/">说说CORS与jsonp</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> 浏览器出于防止潜在安全风险的考虑，使用了同源策略，这一方面保证了我们数据的安全，<br>另一方面却又限制了我们的手脚，基于此，开发者们与标准制定组织提供了不同的解决方案，<br>这里主要说说CORS与jsonp。</p>
+<h3 id="什么是同源策略"><a href="#什么是同源策略" class="headerlink" title="什么是同源策略"></a>什么是同源策略</h3><p>同源指的是两个域需要协议，子域名，主域名与端口号都保持一致，四者有一个不同，即属于跨域。<br><strong>注意:</strong>  <a href="http://localhost:8080与http://127.0.0.1:8080不属于同源，也就是说，即使IP地址一致，但是一个是域名，一个是IP地址，也不属于同源。" target="_blank" rel="noopener">http://localhost:8080与http://127.0.0.1:8080不属于同源，也就是说，即使IP地址一致，但是一个是域名，一个是IP地址，也不属于同源。</a></p>
+<h3 id="CORS的使用与注意点"><a href="#CORS的使用与注意点" class="headerlink" title="CORS的使用与注意点"></a>CORS的使用与注意点</h3><p>CORS：跨域资源共享，是W3C制定的一个草案，定义了在必须访问跨源资源时，浏览器和服务器该怎么沟通。</p>
+<p> CORS的实现原理是，浏览器发出请求报文中会额外包含一个Origin头部，该头部的值是当前页面的源信息（协议，域名和端口），服务器收到请求报文后，如果同意这个跨源请求，就在响应报文的头部添加Access-Control-Allow-Origin，值与请求报文中的Origin头部的值一致，如果响应报文中没有这个头部或者有，但是值不一致，这次的跨源请求就会失败。</p>
+<p> 浏览器原生支持CORS,但是不同的浏览器支持的方式不同。<br><strong>IE8及以上版本引用了XDR(XDomainRequest)类型，这个对象和XHR对象类似，使用这个对象，可以实现安全可靠的跨域通信。</strong><br> XDR的使用与XHR类似，使用过程如下：</p>
+<ol>
+<li><p>实例化XDR</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xdr = <span class="keyword">new</span> XDomainRequest();</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>调用open()，open()接收两个参数，请求所用的方法以及URL，所有的XDR都是异步执行的，所有不需要第三个参数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xdr.open(<span class="string">'get'</span>,<span class="string">'#'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>调用send()，如果使用的是get方法，传入null，如果是post方法，传入字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xdr.send(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为xdr绑定事件处理函数。xdr支持的事件包括load，error，timeout。<strong>需要说明一点的是，这部分的事件监听器需要在调用open()之前声明，这里只是行文需要。</strong><br><strong>4.1 load事件</strong><br>在接收到响应后，你可以访问响应的原始文本，但是没有办法确定响应的状态码，只有在响应有效的/情况下才会触发load事件，如果接收到的响应中不包含Access-Control-Allow-Origin头部的话，则会触发error事件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xdr.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(xdr.resonseText);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>4.2 error事件</strong><br>导致XDR请求失败的因素很多，所有为每个xdr对象绑定该事件的处理函数是很有必要的，但是该事件抛出的信息有限，我们只能确定请求失败了，并不能得知请求失败的原因。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xdr.onerror=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'get a error'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4.3 timeout事件</strong><br>xdr对象有一个timeout属性，该属性表明请求自发出多久后超时，当为其赋值后，在给定的时间内还没接受到响应，就会触发timeout事件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xdr.ontimeout=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">'time is too long'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用XDR需要注意的点：</strong></p>
+<ol>
+<li>cookie不会随请求发送，也不会随请求返回。</li>
+<li>不能访问响应头部信息，这意味着xdr对象没有getResponseHeader()和getAllResponseHeaders()。</li>
+<li>只支持get和post方法。</li>
+<li>当使用post方法时，xdr对象有一个contentType属性，这个属性可以表示要发送的数据的格式，这是xdr对象能够影响头部信息的唯一方法。</li>
+</ol>
+<p><strong>其他浏览器对CORS的实现</strong><br>其他主流浏览器通过XHR对象原生支持CORS,在尝试打开不同来源的资源时，XML可以自动触发这个行为，有一点不同的是，open方法中的URL参数需要传入绝对路径。</p>
+<p><strong>使用XHR对象进行跨域通信的注意点：</strong></p>
+<ol>
+<li>不能使用setRequestHeader()设置自定义头部。</li>
+<li>不能发送和接收cookie。</li>
+<li>调用getAllResponseHeaders()返回空字符串，调用getResponseHeader()报错。</li>
+<li>由于同源请求和跨源请求都使用同样的接口，因此对于本地资源，使用相对URL，对跨源的资源，使用绝对路径，这样可以避免跨源请求时的限制（见1,2）。</li>
+</ol>
+<p>这个给出一个例子，本地文件是index.html，服务端文件为server.js,需要注意的是，我们需要使用http-server(其他的也可以)搭建一个静态资源服务器，关于http-server的使用，<a href="https://www.npmjs.com/package/http-server" target="_blank" rel="noopener">点击这里</a>，这样可以使用http协议访问index.html文件，使用file协议无法使用CORS。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.html</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">        xhr.onreadystatechange=<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(xhr.readyState==<span class="number">4</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>((xhr.status&gt;=<span class="number">200</span>&amp;&amp; xhr.status&lt;<span class="number">300</span>)||xhr.status==<span class="number">304</span>) &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line">                    <span class="built_in">console</span>.log(xhr.getResponseHeader(<span class="string">'Connection'</span>));</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">'Request was unsuccessful: '</span>+xhr.statusText);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        xhr.open(<span class="string">'get'</span>,<span class="string">'http://127.0.0.1:3000/'</span>,<span class="literal">true</span>);</span><br><span class="line">        xhr.send(<span class="literal">null</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//server.js</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);  <span class="comment">//记得安装express</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'http://localhost:8080'</span>);</span><br><span class="line">    res.end(<span class="string">'hello world!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"app is listening 3000"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="CORS的高级使用技巧"><a href="#CORS的高级使用技巧" class="headerlink" title="CORS的高级使用技巧"></a>CORS的高级使用技巧</h3><p>CORS支持在跨域请求的过程中，使用自定义的头部信息，post和GET之外的方法，不同类型的主体内容和提高凭据（cookie)。在使用这些高级选项发送请求时，浏览器会首先发送一个Prefight请求，这种请求使用options方法，这是一种透明的服务器验证机制，开发者不需要做这些。<br>该请求这需要包含以下的头部：</p>
+<ol>
+<li>Origin:与简单的请求相同。</li>
+<li>Access-Control-Allow-Method:请求自身使用的方法（是指我们主动发起的跨域请求的方法，不是options）。</li>
+<li>Access-Control-Request-Headers:（可选）自定义的头部信息，多个头部已逗号隔开。<br>除了这些头部信息外，xhr有withCredentials属性，将该属性设置未true，可以在请求过程中携带cookie。</li>
+</ol>
+<p>服务器在接收到这个请求后，如果同意这次跨域请求，就会在响应中设置响应的头部信息。<br>这些头部信息包括：</p>
+<ol>
+<li>Access-Control-Allow-Origin：与简单的请求相同。</li>
+<li>Access-Control-Allow-Methods:允许的方法，多个方法以逗号分隔。</li>
+<li>Access-Control-Allow-Headers:允许的头部，多个头部以逗号隔开。</li>
+<li>Access-Control-Max-Age:应该将这个Preflight请求缓存多长事件(以秒表示）。<br>5.Access-Control-Allow-Credentials:布尔值。</li>
+</ol>
+<p>这里给一个完整的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.html</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">      <span class="built_in">document</span>.cookie = <span class="string">"name=wang"</span>;  <span class="comment">//BOM提供的接口，用于设置当前页面所在的域的cookie</span></span><br><span class="line">      xhr.withCredentials = <span class="literal">true</span>;  <span class="comment">//允许在这次请求中携带cookie</span></span><br><span class="line">      xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> ((xhr.status &gt;= <span class="number">200</span>) &amp; (xhr.status &lt; <span class="number">300</span>) || xhr.status == <span class="number">304</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'name:'</span>+xhr.getResponseHeader(<span class="string">"name"</span>));</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"Request was unsuccessful: "</span> + xhr.status);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">      xhr.open(<span class="string">"PUT"</span>, <span class="string">"http://localhost:4000/getData"</span>, <span class="literal">true</span>);  <span class="comment">//使用put方法</span></span><br><span class="line">      xhr.setRequestHeader(<span class="string">"age"</span>, <span class="number">12</span>);</span><br><span class="line">      xhr.send(<span class="literal">null</span>);</span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//server1.js</span></span><br><span class="line"><span class="comment">//将该文件与index.html放在一个目录下</span></span><br><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">const</span> server = <span class="built_in">require</span>(<span class="string">'koa-static'</span>);</span><br><span class="line"><span class="keyword">const</span> home = server(__dirname);</span><br><span class="line">app.use(home);</span><br><span class="line">app.listen(<span class="number">3000</span>,()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'app is runnint at port 3000'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//运行该代码后，可以在http://localhost:3000/index.html访问到index.html。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//server2.js</span></span><br><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)();</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Process <span class="subst">$&#123;ctx.request.method&#125;</span>: <span class="subst">$&#123;ctx.request.url&#125;</span>`</span>)</span><br><span class="line">   <span class="keyword">await</span> next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    ctx.response.set(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'http://localhost:3000'</span>);</span><br><span class="line">    ctx.response.set(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">"age"</span>);</span><br><span class="line">    ctx.response.set(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">"PUT"</span>);</span><br><span class="line">    ctx.response.set(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="literal">true</span>);</span><br><span class="line">    ctx.response.set(<span class="string">'Access-Control-Allow-Max-Age'</span>, <span class="number">6</span>);</span><br><span class="line">    ctx.response.set(<span class="string">'Access-Control-Expose-Headers'</span>, <span class="string">'name'</span>);</span><br><span class="line">    <span class="keyword">if</span> (ctx.method === <span class="string">'OPTIONS'</span>) &#123;</span><br><span class="line">        ctx.body = <span class="string">'OPTIONS'</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.put(<span class="string">'/getDate'</span>,<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.request.header.age);</span><br><span class="line">    ctx.response.set(<span class="string">'name'</span>,<span class="string">'wang'</span>);</span><br><span class="line">    ctx.body=<span class="string">'put'</span>;</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;)</span><br><span class="line">app.use(router.routes());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">5000</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'app is listening at port 5000'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行以上server1.js，server2.js文件，访问<a href="http://localhost:3000/index.html。" target="_blank" rel="noopener">http://localhost:3000/index.html。</a><br><img src="https://user-gold-cdn.xitu.io/2019/4/16/16a26060fd316b15?w=453&amp;h=205&amp;f=png&amp;s=3707" alt="浏览器.png"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/4/16/16a2606187c991d1?w=435&amp;h=92&amp;f=png&amp;s=2245" alt="服务器.png"><br>从以上的图片中，可以看到，在进行跨域请求时，携带了cookie，并且浏览器在后台替我们发送了一个options方法的请求。<br><strong>总结：</strong>CORS的高级用法其实就是在真正与服务器进行跨域通信时，浏览器会先发送一个options方法的请求，帮我们跟服务器进行‘沟通’，基于沟通结果，决定我们真正需要的跨域通信的成功或失败。</p>
+<p>###jsonp</p>
+<p><strong>jsonp利用script标签可以不受限制的从其他域加载资源的能力，进行跨域通信。</strong><br>jsonp由两部分组成：<strong>回调函数</strong>和<strong>数据</strong>。回调函数是响应带来时，应该调用的函数，它需要在URL中指定；数据就是服务器返回给浏览器的响应。</p>
+<p><strong>jsonp的使用</strong>：</p>
+<ol>
+<li>创建一个script元素。</li>
+<li>声明一个回调函数。</li>
+<li>为script指定src属性的值，需要将回调函数作为URL的查询字符串，形式为：’callback=functionName’<br>这里给出一个完整的例子<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//index.html</span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span></span><br><span class="line"><span class="javascript">      <span class="comment">//回调函数</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> blog = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="built_in">console</span>.log(str);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        script.src=<span class="string">'http://localhost:3000/?callback=blog'</span>;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.body.appendChild(script);</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//server.js</span></span><br><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)();</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>,<span class="keyword">async</span>(ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="keyword">var</span> name = ctx.request.querystring.split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">    <span class="keyword">var</span> value=<span class="string">'hello world!'</span>;</span><br><span class="line">    ctx.body = <span class="string">`<span class="subst">$&#123;name&#125;</span>('<span class="subst">$&#123;value&#125;</span>')`</span>;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(router.routes());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>,()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'app is running at port 3000'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>其实jsonp的内在逻辑很简单，在script标签中声明的函数是属于全局的，当服务器返回字符串后，这个字符串会被当做JavaScript代码执行，也就是调用之前声明的函数。</p>
+<p>##总结<br>CORS属于浏览器原生支持，支持所有类型的HTTP请求，是跨域通信的根本解决方案。<br>jsonp是开发者们为了绕开同源策略的权宜之计，虽然只支持get方法，但是使用简单。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>CORS属于浏览器原生支持，支持所有类型的HTTP请求，是跨域通信的根本解决方案。<br>jsonp是开发者们为了绕开同源策略的权宜之计，虽然只支持get方法，但是使用简单。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li>高程</li>
+<li><a href="https://mp.weixin.qq.com/s/dfM7BdU813FkHpZMbMKbfw" target="_blank" rel="noopener">九种跨域方式实现原理</a></li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/16/说说CORS与jsonp/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/14/Ajax的使用/" class="archive-article-date">
-  	<time datetime="2019-04-14T11:54:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/14/Ajax的使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ajax的使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/14/Ajax的使用/">Ajax的使用</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/14/hello-world/" class="archive-article-date">
-  	<time datetime="2019-04-14T10:58:44.280Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/14/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +402,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
